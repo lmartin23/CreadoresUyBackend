@@ -26,7 +26,7 @@ namespace Persistence.Configuration
 
             //Seed Data
 
-            builder.HasData(SeedDatabase());
+            //builder.HasData(SeedDatabase());
 
         }
 
