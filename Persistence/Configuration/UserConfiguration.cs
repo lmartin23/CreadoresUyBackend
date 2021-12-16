@@ -26,7 +26,7 @@ namespace Persistence.Configuration
 
             //Seed Data
 
-            //builder.HasData(SeedDatabase());
+            builder.HasData(SeedDatabase());
 
         }
 
@@ -34,62 +34,9 @@ namespace Persistence.Configuration
         public Collection<User> SeedDatabase()
         {
             var usuarios = new Collection<User>();
-
-            var datas = new DataConstant();
-            Random r = new Random();
-
-            Dictionary<string, string> control =
-                new Dictionary<string, string>();
-
-
-
-
-
-            int i = 0;
-            var imagen ="";
-
-            for (i = 0; i < DataConstant.UserQuantity; i++)
-            {
-
-                string name;
-                string surname;
-                do
-                { 
-                    name = datas.Names[r.Next(0, datas.Names.Count)];
-                    surname = datas.Names[r.Next(0, datas.Names.Count)];
-                } while (control.ContainsKey(name+surname)) ;
-
-                control.Add(name+surname, surname+surname);
-
-                string domain = datas.Domains[r.Next(0, datas.Domains.Count)];
-
-                var email = name + surname +"@"+ domain;
-
-                string password = name + surname;
-
-                imagen = DataConstant.ImageProfile[r.Next(0, DataConstant.ImageProfile.Count)];
-                if (i < DataConstant.CreatorQuantity-1)
-                {
-                    usuarios.Add(
-                    new User { Id = i + 1,Created= DateTime.Now, CreatorId = i + 1, Name = name+ surname,Password= password, Email = email,ImgProfile=imagen });
-                }
-                else
-                {
-                    usuarios.Add(
-                        new User { Id = i + 1, Created = DateTime.Now, Name = name + surname, Password = password, Email = email, ImgProfile = imagen });
-                }
-           
-            }
-            imagen = DataConstant.ImageProfile[r.Next(0, DataConstant.ImageProfile.Count)];
-
+            var imagen = "https://firebasestorage.googleapis.com/v0/b/creadoresuy-674c1.appspot.com/o/usuarios%2Fusu1?alt=media&token=150dcf3c-9b94-48c4-b3b0-15df78215526";
             usuarios.Add(
-             new User { Id = i+1, Created = DateTime.Now, Name = "admin", Password = "admin123", Email = "admin@admin", IsAdmin = true, ImgProfile = imagen });
-            imagen = DataConstant.ImageProfile[r.Next(0, DataConstant.ImageProfile.Count)];
-            usuarios.Add(
-                    new User { Id = i+2, Created = DateTime.Now, Name = "usuario", Password = "usuario123", Email = "usuario@usuario", ImgProfile = imagen });
-            imagen = DataConstant.ImageProfile[r.Next(0, DataConstant.ImageProfile.Count)];
-            usuarios.Add(
-                    new User { Id = i + 3, Created = DateTime.Now, CreatorId = DataConstant.CreatorQuantity - 1, Name = "creador", Password = "creador123", Email = "creador@creador", ImgProfile = imagen });
+            new User { Id = 3, Created = DateTime.Now, Name = "admin", Password = "admin123", Email = "admin@admin", IsAdmin = true, ImgProfile = imagen });
 
             return usuarios;
         }
