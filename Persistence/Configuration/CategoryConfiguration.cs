@@ -18,7 +18,7 @@ namespace Persistence.Configuration
             builder.ToTable("Category");
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Name).IsRequired().HasMaxLength(30);
-            //builder.HasData(SeedDatabase());
+            builder.HasData(SeedDatabase());
         }
         public Collection<Category> SeedDatabase()
         {
