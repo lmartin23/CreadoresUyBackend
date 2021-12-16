@@ -191,7 +191,7 @@ namespace Persistence.Context
                 .HasForeignKey(p => p.IdPayment);
 
 
-            Seed(modelBuilder);
+            //Seed(modelBuilder);
             Seed1(modelBuilder);
         }
         public string GenerateJWT(User user)
